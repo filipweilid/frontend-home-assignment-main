@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Sidebar from './components/Sidebar';
+import Preview from './components/Preview';
 
 interface Response {
   response: Tree[];
@@ -14,6 +15,7 @@ export interface Tree {
 const App = () => {
   const [data, setData] = useState<Tree[] | null>(null);
   const [selected, setSelected] = useState<string | null>(null);
+  const [flattenedData, setFlattenedData] = useState<Record<string, Tree>>({});
   const [error, setError] = useState<string | null>(null);
 
   const sortTree = (nodes: Tree[]): Tree[] => {
@@ -23,6 +25,15 @@ const App = () => {
         ...node,
         children: node.children ? sortTree([...node.children]) : undefined,
       }));
+  };
+
+  const flattenTree = (nodes: Tree[], acc: Record<string, Tree>) => {
+    nodes.forEach((node) => {
+      acc[node.id] = node;
+      if (node.children) {
+        flattenTree(node.children, acc);
+      }
+    });
   };
 
   const handleSelect = (id: string) => {
@@ -35,6 +46,10 @@ const App = () => {
       .then((json: Response) => {
         const sortedData = sortTree(json.response);
         setData(sortedData);
+
+        const dataRecord: Record<string, Tree> = {};
+        flattenTree(sortedData, dataRecord);
+        setFlattenedData(dataRecord);
       })
       .catch((err) => {
         console.error(err.message);
@@ -57,6 +72,10 @@ const App = () => {
         )}
       </div>
       <div className="bg-gray-300">
+        <Preview
+          node={selected ? flattenedData[selected] : null}
+          onSelect={handleSelect}
+        />
       </div>
     </div>
   );
