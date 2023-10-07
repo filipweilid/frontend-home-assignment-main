@@ -68,7 +68,7 @@ const Sidebar = ({ data, selectedId, onSelect }: Props) => {
                 onSelect(node.id);
               }}
             >
-              <span className={`text-lg`}>
+              <span className="text-lg">
                 <div className="flex gap-2">
                   {node.type === 'folder' ? (
                     openFolders.has(node.id) ? (
@@ -93,9 +93,7 @@ const Sidebar = ({ data, selectedId, onSelect }: Props) => {
     );
   };
 
-  return (
-    <aside className="pr-2 overflow-y-auto h-full">{renderTree(data)}</aside>
-  );
+  return <aside className="pr-2 h-full">{renderTree(data)}</aside>;
 };
 
 export default Sidebar;
