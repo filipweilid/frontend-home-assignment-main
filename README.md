@@ -89,4 +89,8 @@ fetch('/api/v1/tree');
 
 ## Your notes
 
-...
+It is a good task with a good scope, it was easy to understand what is asked to do. I spent ~3 hours to complete it.
+
+I did make some changes, like removing create-react-app and using Vite instead because CRA is no longer recommended by the React team and is very outdated. There were also some older dependencies that I updated. A good idea would probably be to look over this assignment and update it to use the latest versions of everything. Before I change to Vite I was unable to run the project as it was using Node 18 but Node 16 works fine.
+
+For styling I decided to use Tailwind because I like the consistency it provides and it is very easy to use.
