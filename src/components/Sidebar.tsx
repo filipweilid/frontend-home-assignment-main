@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Node } from '../App';
-import { ChevronDown, ChevronRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { getIcon } from '../utils';
 
 interface Props {
@@ -71,11 +71,12 @@ const Sidebar = ({ data, selectedId, onSelect }: Props) => {
               <span className="text-lg">
                 <div className="flex gap-2">
                   {node.type === 'folder' ? (
-                    openFolders.has(node.id) ? (
-                      <ChevronDown size={16} />
-                    ) : (
-                      <ChevronRight size={16} />
-                    )
+                    <ChevronRight
+                      className={`${
+                        openFolders.has(node.id) ? 'rotate-90 ' : ''
+                      } transition`}
+                      size={16}
+                    />
                   ) : (
                     <div style={{ width: '16px' }} />
                   )}
