@@ -78,7 +78,7 @@ const Sidebar = ({ data, selectedId, onSelect }: Props) => {
                       size={16}
                     />
                   ) : (
-                    <div style={{ width: '16px' }} />
+                    <div className="w-4" />
                   )}
                   {getIcon(node.type, 16)}
                 </div>
