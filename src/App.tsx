@@ -23,7 +23,7 @@ const App = () => {
       .sort((a, b) => a.name.localeCompare(b.name))
       .map((node) => ({
         ...node,
-        children: node.children ? sortTree([...node.children]) : undefined,
+        children: node.children ? sortTree(node.children) : undefined,
       }));
   };
 
