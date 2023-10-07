@@ -62,14 +62,14 @@ const Sidebar = ({ data, selectedId, onSelect }: Props) => {
             <div
               className={`${
                 node.id === selectedId ? 'bg-blue-600' : ''
-              } hover:bg-gray-600 py-1 px-2 rounded transition ease-in-out duration-150 flex items-center space-x-2 cursor-pointer`}
+              } hover:bg-gray-600 py-1 px-2 rounded transition ease-in-out duration-150 flex items-center gap-2 cursor-pointer`}
               onClick={() => {
                 if (node.type === 'folder') toggleFolder(node.id);
                 onSelect(node.id);
               }}
             >
               <span className="text-lg">
-                <div className="flex gap-2">
+                <div className="flex gap-3">
                   {node.type === 'folder' ? (
                     <ChevronRight
                       className={`${
