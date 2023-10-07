@@ -1,8 +1,8 @@
-import { Tree } from '../App';
+import { Node } from '../App';
 import { getIcon } from '../utils';
 
 interface Props {
-  node?: Tree | null;
+  node?: Node | null;
   onSelect: (id: string) => void;
 }
 

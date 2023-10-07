@@ -3,22 +3,22 @@ import Sidebar from './components/Sidebar';
 import Preview from './components/Preview';
 
 interface Response {
-  response: Tree[];
+  response: Node[];
 }
-export interface Tree {
+export interface Node {
   id: string;
   type: 'doc' | 'folder' | 'image';
   name: string;
-  children?: Tree[];
+  children?: Node[];
 }
 
 const App = () => {
-  const [data, setData] = useState<Tree[] | null>(null);
+  const [data, setData] = useState<Node[] | null>(null);
   const [selected, setSelected] = useState<string | null>(null);
-  const [flattenedData, setFlattenedData] = useState<Record<string, Tree>>({});
+  const [flattenedData, setFlattenedData] = useState<Record<string, Node>>({});
   const [error, setError] = useState<string | null>(null);
 
-  const sortTree = (nodes: Tree[]): Tree[] => {
+  const sortTree = (nodes: Node[]): Node[] => {
     return nodes
       .sort((a, b) => a.name.localeCompare(b.name))
       .map((node) => ({
@@ -27,7 +27,7 @@ const App = () => {
       }));
   };
 
-  const flattenTree = (nodes: Tree[], acc: Record<string, Tree>) => {
+  const flattenTree = (nodes: Node[], acc: Record<string, Node>) => {
     nodes.forEach((node) => {
       acc[node.id] = node;
       if (node.children) {
@@ -47,7 +47,7 @@ const App = () => {
         const sortedData = sortTree(json.response);
         setData(sortedData);
 
-        const dataRecord: Record<string, Tree> = {};
+        const dataRecord: Record<string, Node> = {};
         flattenTree(sortedData, dataRecord);
         setFlattenedData(dataRecord);
       })

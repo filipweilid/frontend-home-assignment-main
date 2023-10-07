@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Tree } from '../App';
+import { Node } from '../App';
 import { ChevronDown, ChevronRight } from 'lucide-react';
 import { getIcon } from '../utils';
 
 interface Props {
-  data: Tree[];
+  data: Node[];
   selectedId: string | null;
   onSelect: (id: string) => void;
 }
@@ -23,7 +23,7 @@ const Sidebar = ({ data, selectedId, onSelect }: Props) => {
 
   const findParentIds = (
     id: string,
-    nodes: Tree[],
+    nodes: Node[],
     path: string[] = []
   ): string[] => {
     for (const node of nodes) {
@@ -54,7 +54,7 @@ const Sidebar = ({ data, selectedId, onSelect }: Props) => {
     });
   };
 
-  const renderTree = (nodes: Tree[]) => {
+  const renderTree = (nodes: Node[]) => {
     return (
       <ul className="pl-4">
         {nodes.map((node) => (
